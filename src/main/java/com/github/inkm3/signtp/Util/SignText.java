@@ -20,13 +20,13 @@ public class SignText {
 
     private static final Plugin plugin = Main.getPlugin(Main.class);
 
-    private static final File SignTextFile = new File(plugin.getDataFolder(), "signtext.yml");
+    private static final File SignTextFile = new File(plugin.getDataFolder(), "text/signtext.yml");
     private static final YamlConfiguration SignTextConfig = YamlConfiguration.loadConfiguration(SignTextFile);
 
     public static void load() {
-        if (!SignTextFile.exists()) plugin.saveResource("signtext.yml", false);
+        if (!SignTextFile.exists()) plugin.saveResource("text/signtext.yml", false);
 
-        SignTextConfig.setDefaults(YamlConfiguration.loadConfiguration(new InputStreamReader(plugin.getResource("signtext.yml"))));
+        SignTextConfig.setDefaults(YamlConfiguration.loadConfiguration(new InputStreamReader(plugin.getResource("text/signtext.yml"))));
 
         try {
             SignTextConfig.load(SignTextFile);

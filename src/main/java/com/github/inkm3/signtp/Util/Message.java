@@ -14,16 +14,16 @@ public class Message {
 
     private static final Plugin plugin = Main.getPlugin(Main.class);
 
-    private static final File LangFile = new File(plugin.getDataFolder(), "message.yml");
+    private static final File LangFile = new File(plugin.getDataFolder(), "text/message.yml");
     private static final YamlConfiguration LangConfig = YamlConfiguration.loadConfiguration(LangFile);
 
     private static boolean ExistsLangFile = true;
 
 
     public static void load() {
-        if (!LangFile.exists()) plugin.saveResource("message.yml", false);
+        if (!LangFile.exists()) plugin.saveResource("text/message.yml", false);
 
-        LangConfig.setDefaults(YamlConfiguration.loadConfiguration(new InputStreamReader(plugin.getResource("message.yml"))));
+        LangConfig.setDefaults(YamlConfiguration.loadConfiguration(new InputStreamReader(plugin.getResource("text/message.yml"))));
 
         try {
             LangConfig.load(LangFile);

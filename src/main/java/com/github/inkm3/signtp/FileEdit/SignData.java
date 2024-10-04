@@ -6,6 +6,7 @@ import com.github.inkm3.signtp.System.SignTP;
 import com.github.inkm3.signtp.Util.Config;
 import com.github.inkm3.signtp.Util.SignUtil;
 import com.github.inkm3.signtp.Util.Util;
+import com.github.inkm3.signtp.Version.Update;
 import net.kyori.adventure.text.Component;
 import net.minecraft.nbt.CompoundTag;
 import org.bukkit.Location;
@@ -67,24 +68,14 @@ public class SignData {
                         String[] back =    (map.get("BLine") instanceof ArrayList<?> list) ? list.stream().map(Object::toString).toArray(String[]::new) : new String[]{ "", "", "", "" };
                         String[] display = (map.get("DLine") instanceof ArrayList<?> list) ? list.stream().map(Object::toString).toArray(String[]::new) : new String[]{ "", "", "", "" };
 
-                        if (Stream.of(world, pos, matl, face, front, back, display).allMatch(Objects::nonNull)) {
-                            Location loc = pos.toLocation(world);
-                            BlockData data = matl.createBlockData();
-                            switch (data) {
-                                case WallHangingSign s -> s.setFacing(face);
-                                case HangingSign s -> s.setRotation(face);
-                                case WallSign s -> s.setFacing(face);
-                                case Sign s -> s.setRotation(face);
-                                default -> {}
-                            }
-
-                            new deserializeSignData(loc, data, front, back, display);
-                        }
+                        create(world, pos, matl, face, front, back, display);
                     }
                 });
-                save();
             }
         } catch (ClassCastException ignore) { }
+
+        Update.updateSaveData.update();
+        save();
     }
 
     public static boolean isSignTP(Location loc) {
@@ -102,6 +93,23 @@ public class SignData {
 
     public static deserializeSignData create(org.bukkit.block.Sign sign, String[] front, String[] back, String[] display) {
         return new deserializeSignData(sign, front, back, display);
+    }
+
+    public static deserializeSignData create(World world, Vector pos, Material matl, BlockFace face, String[] front, String[] back, String[] display) {
+        if (Stream.of(world, pos, matl, face, front, back, display).allMatch(Objects::nonNull)) {
+            Location loc = pos.toLocation(world);
+            BlockData data = matl.createBlockData();
+            switch (data) {
+                case WallHangingSign s -> s.setFacing(face);
+                case HangingSign s -> s.setRotation(face);
+                case WallSign s -> s.setFacing(face);
+                case Sign s -> s.setRotation(face);
+                default -> {}
+            }
+
+            return new deserializeSignData(loc, data, front, back, display);
+        }
+        return null;
     }
 
     public static deserializeSignData create(org.bukkit.block.Sign sign) {
