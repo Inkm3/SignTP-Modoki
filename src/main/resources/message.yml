@@ -1,0 +1,65 @@
+
+# --------------------------------------------------------------------- #
+# 送信されるメッセージの内部設定
+#
+# 1. プレイヤーと同じlocaleのメッセージ
+# 2. en_USのメッセージ
+# 3. ja_JPのメッセージ
+# 4. ja_JPのデフォルトメッセージ
+#
+# まず1のメッセージを取得し、メッセージがnullだった場合次のメッセージを取得する
+# 全てのメッセージがnullだった場合4のメッセージを取得し送信する
+# nullではなく空白だった場合、メッセージは送信されない
+# --------------------------------------------------------------------- #
+
+# ---------------------------------------------------- #
+# 使用できる独自の変換文字
+# <connect> 接続するサーバーの名前
+# <connecting> 接続中のサーバーの名前
+# <connected> 現在接続しているサーバーの名前
+# <title> 看板に設定された名前、もしくは接続するサーバーの名前
+# <player> プレイヤーの名前
+# ---------------------------------------------------- #
+
+ErrorMessage:
+  # 看板の設定ができない場合のメッセージ
+  Setting: # 使用できる変換文字 <player>
+    # 権限不足
+    AuthorityMissing:
+      ja_JP: "<red>権限が不足しているため設定を完了できません。</red>"
+
+    # サーバー名未設定
+    ServerNameEmpty:
+      ja_JP: "<red>設定を完了するには二行目に接続するサーバーの名前を記載してください。</red>"
+
+  # 看板をクリックし、サーバーに接続できなかった場合のメッセージ
+  ConnectionFailure: # 使用できる変換文字 <connect>, <connected>, <title>, <player>
+    # プレイヤーの権限不足
+    Authority:
+     ja_JP: "<red>サーバーに接続できません。</red>"
+     en_US: "<red>Unable to connect to server.</red>"
+
+    # 設定されたサーバーが不明
+    Unknown:
+      ja_JP: "<red>指定されたサーバー <title> は存在しません。</red>"
+      en_US: "<red>The specified server <title> does not exist.</red>"
+
+    # 設定されたサーバーがオフライン
+    Offline:
+      ja_JP: "<red>指定されたサーバー <title> は現在オフラインです。</red>"
+      en_US: "<red>The specified server <title> is currently offline.</red>"
+
+    # 接続エラー
+    Error:
+      ja_JP: "<red><title> に接続できませんでした。後でもう一度お試しください。</red>"
+      en_US: "<red>Unable to connect you to <title>. Please try again later.</red>"
+
+    # サーバーに接続中
+    Connecting: # 追加で使用可能 <connecting>
+      ja_JP: "<yellow>すでにサーバーに接続しようとしています！</yellow>"
+      en_US: "<yellow>You are already trying to connect to a server!</yellow>"
+
+    # 設定されたサーバーと現在いるサーバーが一緒
+    Connected:
+      ja_JP: "<red>すでにこのサーバーに接続されています。</red>"
+      en_US: "<red>You are already connected to this server!</red>"

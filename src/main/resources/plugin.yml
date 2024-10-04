@@ -1,0 +1,5 @@
+name: SignTP
+version: '1.0.0-snapshot'
+main: com.github.inkm3.signtp.Main
+api-version: '1.21'
+load: STARTUP

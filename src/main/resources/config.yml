@@ -1,0 +1,16 @@
+Version: 1.2
+SignTextConfig:
+
+  # サーバーデータの更新頻度 1..60の範囲内
+  UpdateInterval: 2
+
+  # チャンクがロードされている看板のみ更新対象にする
+  RequireChunkLoaded: true
+
+  # 看板やサーバーのデータが更新された時、ファイルに書き込みを行う
+  DataChangeAutoSave: false
+
+  # サーバーの現在人数や最大人数が取得出来ていない場合、以下の文字列に変換
+  UnknownValuePlaceholder: "?"
+
+
