@@ -2,4 +2,75 @@ name: SignTP
 version: '1.0.0-snapshot'
 main: com.github.inkm3.signtp.Main
 api-version: '1.21'
-load: STARTUP
+load: POSTWORLD
+permissions:
+  signtp.*:
+    description: "SignTPの権限設定"
+    children:
+      signtp.connect: true
+      signtp.edit: true
+
+  signtp.connect:
+    description: "サーバー間移動が許可されているプレイヤー"
+    default: op
+
+  signtp.edit:
+    description: "看板の編集が許可されているプレイヤー"
+    default: op
+    children:
+      signtp.command.*: true
+
+  signtp.command.*:
+    description: "コマンドの実行が許可されているプレイヤー"
+    children:
+      signtp.command.config.*: true
+      signtp.command.sign.*: true
+      signtp.command.give: true
+
+  signtp.command.config.*:
+    children:
+      signtp.command.config.reload: true
+      signtp.command.config.value: true
+
+  signtp.command.sign.*:
+    children:
+      signtp.command.sign.load: true
+      signtp.command.sign.block.*: true
+      signtp.command.sign.item.*: true
+
+  signtp.command.sign.block.*:
+    children:
+      signtp.command.sign.block.front: true
+      signtp.command.sign.block.back: true
+      signtp.command.sign.block.display: true
+
+  signtp.command.sign.item.*:
+    children:
+      signtp.command.sign.item.front: true
+      signtp.command.sign.item.back: true
+      signtp.command.sign.item.display: true
+
+  signtp.command.config.reload:
+    default: false
+  signtp.command.config.value:
+    default: false
+
+  signtp.command.give:
+    default: false
+
+  signtp.command.sign.load:
+    default: false
+
+  signtp.command.sign.block.front:
+    default: false
+  signtp.command.sign.block.back:
+    default: false
+  signtp.command.sign.block.display:
+    default: false
+
+  signtp.command.sign.item.front:
+    default: false
+  signtp.command.sign.item.back:
+    default: false
+  signtp.command.sign.item.display:
+    default: false

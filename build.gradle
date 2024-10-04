@@ -1,9 +1,11 @@
 plugins {
     id 'java'
+    id 'io.papermc.paperweight.userdev' version '1.7.2'
+    id 'io.github.goooler.shadow' version '8.1.8'
 }
 
 group = 'com.github.inkm3'
-version = '1.0.0-snapshot'
+version = '1.0.0'
 
 repositories {
     mavenCentral()
@@ -15,10 +17,14 @@ repositories {
         name = "sonatype"
         url = "https://oss.sonatype.org/content/groups/public/"
     }
+    maven {
+        url = "https://repo.codemc.org/repository/maven-public/"
+    }
 }
 
 dependencies {
-    compileOnly("io.papermc.paper:paper-api:1.21.1-R0.1-SNAPSHOT")
+    paperweight.paperDevBundle "1.21.1-R0.1-SNAPSHOT"
+    implementation "dev.jorel:commandapi-bukkit-shade-mojang-mapped:9.5.3"
 }
 
 def targetJavaVersion = 21
@@ -46,4 +52,16 @@ processResources {
     filesMatching('plugin.yml') {
         expand props
     }
+}
+
+shadowJar {
+    dependencies {
+        include dependency("dev.jorel:commandapi-bukkit-shade-mojang-mapped:9.5.3")
+    }
+
+    relocate("dev.jorel.commandapi", "com.github.inkm3.signtp")
+}
+
+tasks.withType(Jar).configureEach {
+    archiveFileName.set("${project.name}-1.21.1-${version}.jar")
 }
