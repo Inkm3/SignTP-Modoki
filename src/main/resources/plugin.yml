@@ -1,5 +1,5 @@
 name: SignTP
-version: '1.0.0-snapshot'
+version: ${version}
 main: com.github.inkm3.signtp.Main
 api-version: '1.21'
 load: POSTWORLD
