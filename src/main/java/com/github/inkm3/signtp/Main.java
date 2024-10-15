@@ -10,6 +10,7 @@ import com.github.inkm3.signtp.System.SignTP;
 import com.github.inkm3.signtp.Util.Config;
 import com.github.inkm3.signtp.Util.Message;
 import com.github.inkm3.signtp.Util.SignText;
+import com.github.inkm3.signtp.Util.UpdateChecker;
 import dev.jorel.commandapi.CommandAPI;
 import dev.jorel.commandapi.CommandAPIBukkitConfig;
 import dev.jorel.commandapi.CommandAPICommand;
@@ -22,6 +23,7 @@ public final class Main extends JavaPlugin {
     @Override
     public void onLoad() {
         CommandAPI.onLoad(new CommandAPIBukkitConfig(this).silentLogs(true));
+        UpdateChecker.getInstance(this).checkForUpdates();
     }
 
     @Override
