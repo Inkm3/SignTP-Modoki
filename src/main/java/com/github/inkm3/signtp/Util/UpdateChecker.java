@@ -52,11 +52,10 @@ public class UpdateChecker {
 
             // アップデートがある場合はコンソールに表示
             if (latestVersion.isPresent() && compareVersions(latestVersion.get(), currentVersion) > 0) {
-                plugin.getLogger().info("\n" +
-                        "===============================\n" +
-                        "新しいバージョン " + latestVersion.get() + " が利用可能です！\n" +
-                        "現在のバージョン: " + currentVersion + "\n" +
-                        "===============================");
+                plugin.getLogger().info("==========================================");
+                plugin.getLogger().info("新しいバージョン " + latestVersion.get() + " が利用可能です！");
+                plugin.getLogger().info("現在のバージョン: " + currentVersion);
+                plugin.getLogger().info("==========================================");
             }
 
         } catch (Exception e) {
