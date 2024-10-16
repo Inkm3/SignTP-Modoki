@@ -23,11 +23,11 @@ public final class Main extends JavaPlugin {
     @Override
     public void onLoad() {
         CommandAPI.onLoad(new CommandAPIBukkitConfig(this).silentLogs(true));
+        UpdateChecker.getInstance(this).checkForUpdates();
     }
 
     @Override
     public void onEnable() {
-        UpdateChecker.getInstance(this).checkForUpdates();
         CommandAPI.onEnable();
 
         Config.load();

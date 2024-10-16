@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'com.github.inkm3'
-version = '4.0.2-pre2'
+version = '1.21.1-v4.0.2-pre1'
 
 repositories {
     mavenCentral()
@@ -63,5 +63,5 @@ shadowJar {
 }
 
 tasks.withType(Jar).configureEach {
-    archiveFileName.set("${project.name}-1.21.1-${version}.jar")
+    archiveFileName.set("${project.name}-${version}.jar")
 }
